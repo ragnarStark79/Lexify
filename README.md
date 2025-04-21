@@ -1,6 +1,6 @@
-# Chat Enhancer
+# Lexify
 
-Chat Enhancer is a powerful text enhancement tool that leverages state-of-the-art AI models to improve the quality of text. It supports both CLI and web interfaces, making it versatile for various use cases. The application integrates with Hugging Face models and MongoDB for logging interactions.
+Lexify is a powerful text enhancement tool that leverages state-of-the-art AI models to improve the quality of text. It supports both CLI and web interfaces, making it versatile for various use cases. The application integrates with Hugging Face models and MongoDB for logging interactions.
 
 ## Features
 - Enhance text using AI models from Hugging Face.
@@ -16,8 +16,8 @@ Chat Enhancer is a powerful text enhancement tool that leverages state-of-the-ar
 ### Step 1: Clone or Fork the Repository
 Clone the repository to your local machine:
 ```bash
-git clone https://github.com/your_username/chat_enhancer.git
-cd chat_enhancer
+git clone https://github.com/your_username/lexify.git
+cd lexify
 ```
 
 Alternatively, fork the repository on GitHub and then clone your fork.
