@@ -4,7 +4,7 @@ from database import get_db_handler
 import config
 import time
 
-app = Flask(__name__, static_url_path='/static', template_folder='templates')
+app = Flask(__name__, static_url_path='/static')
 enhancer = get_text_enhancer()
 db = get_db_handler()
 
