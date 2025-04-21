@@ -28,3 +28,7 @@ build/
 
 # Hugging Face cache
 huggingface_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+notes.txt
