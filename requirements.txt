@@ -1,0 +1,7 @@
+transformers
+torch
+pymongo
+python-dotenv # For managing configuration securely
+flask # For web interface
+huggingface-hub # For authentication
+accelerate # Required for device_map='auto'
