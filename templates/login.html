@@ -4,7 +4,8 @@
 
 {% block content %}
 <div class="auth-container">
-    <h2>Login to Your Account</h2>
+    {# Added icon to title #}
+    <h2><i class="fas fa-sign-in-alt"></i> Login to Your Account</h2>
     <form method="POST" action="{{ url_for('login') }}">
         <div class="form-group">
             <label for="email">Email</label>
@@ -14,7 +15,8 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <button type="submit" class="auth-btn">Login</button>
+        {# Added icon to button #}
+        <button type="submit" class="auth-btn">Login <i class="fas fa-arrow-right"></i></button>
     </form>
     <p class="auth-switch">Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></p>
 </div>

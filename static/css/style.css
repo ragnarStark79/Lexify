@@ -420,21 +420,32 @@ textarea#input-text:focus {
 .auth-container, .profile-container {
     max-width: 450px; /* Slightly wider */
     margin: 3rem auto;
-    padding: 2.5rem;
+    padding: 2.5rem 3rem; /* Increased horizontal padding */
     background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 12px; /* More rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+    border: 1px solid #e9ecef; /* Subtle border */
+    overflow: hidden; /* Ensure child elements respect border radius */
 }
 
 .auth-container h2, .profile-container h2 {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem; /* Increased spacing */
     color: var(--dark-color);
     font-weight: 600;
+    font-size: 1.6rem; /* Slightly larger title */
+    display: flex; /* Enable flex for icon alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem; /* Space between icon and text */
 }
 
+/* Add icons to titles (optional, requires adding <i> tags in HTML) */
+/* Example: .auth-container h2::before { font-family: "Font Awesome 6 Free"; content: '\f023'; ... } */
+
 .form-group {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem; /* Increased spacing */
+    position: relative; /* For potential icon positioning */
 }
 
 .form-group label {
@@ -447,53 +458,89 @@ textarea#input-text:focus {
 
 .form-group input {
     width: 100%;
-    padding: 0.85rem 1rem;
+    padding: 0.9rem 1.1rem; /* Increased padding */
     border: 1px solid #ced4da;
-    border-radius: 6px;
+    border-radius: 8px; /* More rounded inputs */
     font-size: 1rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f8f9fa; /* Subtle background */
 }
 
 .form-group input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(74, 107, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.2); /* Adjusted focus ring */
+    background-color: white; /* White background on focus */
 }
+
+/* Style for potential icons inside inputs (requires HTML changes) */
+/* .form-group .input-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--gray-color); } */
+/* .form-group input.has-icon { padding-left: 40px; } */
+
 
 .auth-btn {
     width: 100%;
     padding: 0.9rem;
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), #3a5af0); /* Gradient background */
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 0.5rem; /* Add some space above button */
+    transition: all 0.3s ease;
+    margin-top: 1rem; /* Increased space above button */
+    box-shadow: 0 4px 15px rgba(74, 107, 255, 0.2);
+    display: flex; /* For icon alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .auth-btn:hover {
-    background-color: #3a5af0;
+    background: linear-gradient(135deg, #3a5af0, var(--primary-color)); /* Slightly shift gradient */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74, 107, 255, 0.3);
 }
+
+/* Add icon styles (requires adding <i> tags in HTML) */
+/* .auth-btn i { transition: transform 0.3s ease; } */
+/* .auth-btn:hover i { transform: translateX(3px); } */
 
 .auth-switch {
     text-align: center;
-    margin-top: 1.8rem;
+    margin-top: 2rem; /* Increased spacing */
     color: var(--gray-color);
     font-size: 0.95rem;
 }
 
-.auth-switch a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
+/* ... rest of existing code ... */
+
+/* Profile Page Specific Styles */
+/* ... existing profile styles ... */
+.profile-details p {
+    margin-bottom: 1rem; /* Increased spacing */
+    font-size: 1.05rem;
+    color: var(--gray-color);
+    border-bottom: 1px dashed #e9ecef; /* Subtle separator */
+    padding-bottom: 0.8rem;
+}
+.profile-details p:last-child {
+    border-bottom: none; /* Remove border from last item */
 }
 
-.auth-switch a:hover {
-    text-decoration: underline;
+.profile-details strong {
+    color: var(--dark-color);
+    min-width: 130px; /* Adjust width */
+    display: inline-block;
+    margin-right: 0.5rem;
 }
+
+.profile-update-btn {
+    margin-top: 1.5rem; /* More space */
+}
+
+/* ... rest of existing code ... */
 
 /* Flash Messages & Welcome Popup */
 /* (Keep existing flash message styles from base.html <style> block) */
