@@ -25,7 +25,7 @@ Lexify is a powerful text enhancement tool that leverages state-of-the-art AI mo
 
 ### Step 1: Clone or Fork the Repository
 ```bash
-git clone https://github.com/your_username/lexify.git # Replace with actual repo URL if different
+git clone https://github.com/ragnarStark79/Lexify.git # Replace with actual repo URL if different
 cd lexify
 ```
 
