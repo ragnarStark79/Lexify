@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Lexify Enhancer{% endblock %}
+
+{% block content %}
+    <div class="editor-container">
+        <div class="input-section">
+            <h2><i class="fas fa-keyboard"></i> Your Text <span class="small-text">(Ctrl+Enter to submit)</span></h2>
+            <textarea id="input-text" placeholder="Enter text to refine..." rows="8"></textarea> {# Adjusted rows #}
+            <div class="button-container">
+                <button id="enhance-button" class="enhance-btn">
+                    <span class="btn-text">Enhance</span>
+                    <span class="btn-icon"><i class="fas fa-wand-magic-sparkles"></i></span>
+                </button>
+                <button id="clear-button" class="clear-btn">
+                    <span class="btn-text">Clear</span>
+                    <span class="btn-icon"><i class="fas fa-times"></i></span> {# Changed icon #}
+                </button>
+            </div>
+        </div>
+
+        <div class="output-section">
+            <h2><i class="fas fa-lightbulb"></i> Enhanced Text <span class="small-text">(AI-powered result)</span></h2> {# Updated icon/text #}
+            <div id="output-container">
+                 {# Thinking animation moved inside output-container for positioning #}
+                <div id="thinking" class="thinking-animation">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <div id="output-text" class="output-text"></div> {# Text will appear here #}
+                 {# Duration will be appended here by JS #}
+            </div>
+            {# Feedback moved inside output-section #}
+            <div id="feedback-section" class="feedback-container"> {# Added ID and class #}
+                <p>Rate this enhancement:</p> {# Simplified text #}
+                <div class="rating">
+                    <span class="rating-btn" data-rating="1" title="Not helpful"><i class="far fa-thumbs-down"></i></span> {# Added titles #}
+                    <span class="rating-btn" data-rating="5" title="Helpful"><i class="far fa-thumbs-up"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}

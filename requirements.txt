@@ -5,3 +5,4 @@ python-dotenv # For managing configuration securely
 flask # For web interface
 huggingface-hub # For authentication
 accelerate # Required for device_map='auto'
+Flask-Bcrypt # Added for password hashing

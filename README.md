@@ -1,44 +1,43 @@
 # Lexify
 
-Lexify is a powerful text enhancement tool that leverages state-of-the-art AI models to improve the quality of text. It supports both CLI and web interfaces, making it versatile for various use cases. The application integrates with Hugging Face models and MongoDB for logging interactions.
+Lexify is a powerful text enhancement tool that leverages state-of-the-art AI models to improve the quality of text. It supports both CLI and web interfaces, making it versatile for various use cases. The application integrates with Hugging Face models and MongoDB for logging interactions and user data.
 
 ## Features
-- Enhance text using AI models from Hugging Face.
-- Support for both CLI and web interfaces.
-- Log interactions to a MongoDB database.
-- Easily configurable to use different models from Hugging Face.
-- Feedback mechanism placeholder for future enhancements.
+- Enhance text using AI models from Hugging Face (currently configured for `mistralai/Mistral-7B-Instruct-v0.1`).
+- **Web Interface:**
+    - User authentication (signup, login, logout).
+    - User profile management (view/update name and email).
+    - Protected routes requiring login.
+    - Interactive text input and output display with loading animations.
+    - Feedback mechanism (rating) for enhanced text.
+    - Flash messages and welcome popups for user feedback.
+    - Responsive design with scroll-triggered animations.
+- **CLI Mode:** Basic command-line interface for text enhancement.
+- **Database Integration:**
+    - Log text enhancement interactions (original, enhanced, model, user ID, feedback) to MongoDB.
+    - Store user credentials and profile information securely in MongoDB (passwords hashed using Bcrypt).
+- Easily configurable model via `config.py`.
+- Secure configuration using `.env` file for sensitive data (API keys, database URI, secret key).
 
 ---
 
 ## Installation
 
 ### Step 1: Clone or Fork the Repository
-Clone the repository to your local machine:
 ```bash
-git clone https://github.com/your_username/lexify.git
+git clone https://github.com/your_username/lexify.git # Replace with actual repo URL if different
 cd lexify
 ```
 
-Alternatively, fork the repository on GitHub and then clone your fork.
-
 ### Step 2: Create a Python Virtual Environment
-It is recommended to use a virtual environment to manage dependencies:
 ```bash
 python -m venv venv
+source venv/bin/activate # macOS/Linux
+# or
+venv\Scripts\activate # Windows
 ```
-Activate the virtual environment:
-- On Windows:
-  ```bash
-  venv\Scripts\activate
-  ```
-- On macOS/Linux:
-  ```bash
-  source venv/bin/activate
-  ```
 
 ### Step 3: Install Dependencies
-Ensure your virtual environment is active, then install the required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
@@ -47,42 +46,36 @@ pip install -r requirements.txt
 
 ## Setup
 
-### Step 1: Create a `.env` File
-Create a `.env` file in the root directory of the project to store environment variables. Below is an example of what to include in the `.env` file:
+### Step 1: Create and Configure `.env` File
+Create a `.env` file in the root directory of the project. Add the following variables, replacing placeholder values with your actual credentials:
+
 ```plaintext
-MONGO_URI=mongodb+srv://<username>:<password>@<cluster-url>/<database-name>
-HUGGINGFACE_TOKEN=<your_huggingface_token>
+# MongoDB Connection String (local or cloud)
+MONGO_URI="mongodb://localhost:27017/"
+# Database and Collection Names (optional, defaults are provided in config.py)
+MONGO_DB_NAME="lexify_data"
+MONGO_COLLECTION_NAME="interactions"
+MONGO_USERS_COLLECTION_NAME="users"
+
+# Flask Secret Key (generate a strong random key)
+# Example generation: python -c 'import secrets; print(secrets.token_hex(32))'
+SECRET_KEY="your_strong_random_secret_key"
+
+# Hugging Face Token (optional, needed for private/gated models)
+HUGGINGFACE_TOKEN="your_huggingface_token"
 ```
-Replace `<username>`, `<password>`, `<cluster-url>`, `<database-name>`, and `<your_huggingface_token>` with your actual values.
 
-### Step 2: Configure the Database
-1. Set up a MongoDB instance (local or cloud).
-2. Update the `MONGO_URI` in the `.env` file with your MongoDB connection details.
+**Important:**
+- Ensure your MongoDB server is running and accessible at the specified `MONGO_URI`.
+- Generate a unique and strong `SECRET_KEY` for Flask session security.
 
-### Step 3: Hugging Face Setup
-#### Install Hugging Face Hub
-If not already installed, run:
-```bash
-pip install huggingface-hub
-```
+### Step 2: Hugging Face Setup (If using private/gated models)
+Follow the steps in the original README section for Hugging Face Hub installation, authentication (`huggingface-cli login`), and requesting access if needed.
 
-#### Authenticate via Terminal
-1. Run the following command:
-   ```bash
-   huggingface-cli login
-   ```
-2. Go to your Hugging Face account settings: [Hugging Face Tokens](https://huggingface.co/settings/tokens).
-3. Create a new token with at least a 'read' role.
-4. Copy the token and paste it into the terminal when prompted.
-
-#### Configure Models
-- Open `config.py` and specify the Hugging Face model you want to use.
-- Ensure the model size matches your system's capabilities.
-
-#### Request Access for Gated Models (if required)
-1. Visit the model page on Hugging Face (e.g., `https://huggingface.co/your_model_location`).
-2. Request access by agreeing to the terms and clicking the necessary buttons.
-3. Wait for approval and retry running the application after access is granted.
+### Step 3: Configure Model (Optional)
+- The default model is set in `config.py` (`mistralai/Mistral-7B-Instruct-v0.1`).
+- You can change `DEFAULT_MODEL_NAME` to another compatible Hugging Face model.
+- Ensure the chosen model is suitable for your hardware resources.
 
 ---
 
@@ -114,35 +107,38 @@ pip install huggingface-hub
 
 ## Usage
 
-### CLI Mode
+### Web Interface (Recommended)
+Run the Flask web application:
+```bash
+python webapp.py
+```
+- Access the application in your browser, usually at `http://127.0.0.1:5000`.
+- Sign up for a new account or log in.
+- Navigate to the enhancer page to use the tool.
+- Visit the profile page via the user icon dropdown to manage your details.
+
+### CLI Mode (Basic Functionality)
 Run the application in CLI mode:
 ```bash
 python main.py
 ```
-
-### Web Interface
-Run the application in web mode:
-```bash
-python main.py --web
-```
-By default, the web interface runs on port 5000. You can specify a different port:
-```bash
-python main.py --web --port 8080
-```
+- Follow the prompts to enter text for enhancement.
 
 ---
 
 ## Notes
-- Ensure your Hugging Face token is saved locally for seamless model downloads.
-- For gated models, ensure you have requested and received access before running the application.
-- Feedback mechanisms are placeholders and can be extended as needed.
+- The web interface provides the full set of features, including user accounts and feedback.
+- Ensure your `.env` file is correctly configured before running the application.
+- The feedback mechanism currently logs the rating to the database but doesn't yet influence model behavior.
 
 ---
 
 ## Troubleshooting
-- **Model Loading Issues**: Ensure your Hugging Face token is valid and you have access to the specified model.
-- **Database Connection Errors**: Verify your MongoDB connection details in the `.env` file.
-- **Web Interface Not Starting**: Ensure the specified port is not in use.
+- **Authentication Issues**: Double-check email/password. Ensure the database connection is working and the `users` collection exists.
+- **Model Loading Issues**: Verify `HUGGINGFACE_TOKEN` in `.env` (if needed), internet connection, and model access permissions on Hugging Face.
+- **Database Connection Errors**: Confirm `MONGO_URI` in `.env` is correct and the MongoDB server is running.
+- **Web Interface Not Starting**: Check for port conflicts (default 5000) and look for errors in the terminal output when running `python webapp.py`.
+- **JavaScript Errors**: Open the browser's developer console (usually F12) to check for errors on the web pages.
 
 ---
 
